@@ -360,7 +360,7 @@ class WebServer extends Worker
      * $param $moudle 需要检测的模块名
      */
     public function isMoudle($moudle){
-        if(!is_dir('../../application/'.$moudle)){
+        if(!is_dir(APIROOT.'/application/'.$moudle)){
             $this -> is_moudle = false;
         }else{
             $this -> is_moudle = true;
