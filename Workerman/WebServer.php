@@ -189,11 +189,11 @@ class WebServer extends Worker
         }else{
             $pathInfo = $workerman_url_info['path'];
         }
+        unset($workerman_url_info);
         if (($pathInfo !== '/') && count($pathInfoArr) > 2){
             $urlArray = array_values(array_filter(explode("/",$pathInfo)));
             // 获取模块名
-            $moudleName = empty($urlArray[0]) ? $this -> app_moudle : $urlArray[0];
-            $moudle = $moudleName;
+            $moudle = empty($urlArray[0]) ? $this -> app_moudle : $urlArray[0];
             $_SERVER['m'] = $moudle;
             $this -> isMoudle($moudle);
             //检测当前模块
@@ -209,7 +209,9 @@ class WebServer extends Worker
                     $Controller = "";
                     if(!in_array($ControllerObjStr,$this -> controllerObjs)){
                         $Controller = new $ControllerObjStr();
-                        array_push($this -> controllerObjs,["$ControllerObjStr"=>$Controller]);
+                        $this -> controllerObjs["$ControllerObjStr"] = $Controller;
+                    }else{
+                        $Controller = $ControllerObjStr;
                     }
                     //执行对应方法
                     $action = empty($urlArray[2]) ? $this -> app_action : $urlArray[2];
@@ -279,8 +281,7 @@ class WebServer extends Worker
             $connection -> send(json_encode(['status'=>0,'msg'=>'please domain/Moudle/Controller/action']));
             return;
         }
-
-        
+        unset($pathInfoArr);  
     }
 
     public static function sendFile($connection, $file_path)
