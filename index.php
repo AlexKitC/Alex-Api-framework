@@ -3,6 +3,8 @@ use \Workerman\Worker;
 use \Workerman\WebServer;
 const APIROOT = __DIR__;
 require_once __DIR__ . '/Workerman/Autoloader.php';
+require_once __DIR__ . '/core/Db.php';
+require_once __DIR__ . '/core/function.php';
 class httpServer{
     private $httpServer;
     public function __construct(){
