@@ -8,7 +8,7 @@ class httpServer{
     public function __construct(){
         $this -> httpServer = new WebServer('http://127.0.0.1:8080');
         $this -> httpServer -> addRoot('domain', __DIR__.'/application');
-        $this -> httpServer -> count = 4;
+        $this -> httpServer -> count = 1;
     }
 }
 new httpServer();
