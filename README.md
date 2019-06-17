@@ -1,6 +1,6 @@
 # Alex-Api-framework
 
-### 文档待Db类完善后添加
+### [看云文档](https://www.kancloud.cn/alex15708497647/alexmvc)
 
 ### 在workerman的webServer基础上添加了/moudle/controller/action模块化分层的支持；因此你可以像使用传统的MVC框架那样在controller里书写你的业务逻辑。 
 
